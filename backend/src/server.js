@@ -17,11 +17,9 @@ const server = http.createServer(app);
 // Socket.io
 const io = new Server(server, {
     cors: {
-        origin: [
-            process.env.FRONTEND_URL || 'http://localhost:3000',
-            process.env.ADMIN_URL || 'http://localhost:3001',
-        ],
-        methods: ['GET', 'POST'],
+        origin: function (origin, callback) { callback(null, true); },
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
+        credentials: true
     },
 });
 app.set('io', io);
@@ -34,10 +32,7 @@ io.on('connection', (socket) => {
 // ─── Middleware ──────────────────────────────────────────────
 app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
 app.use(cors({
-    origin: [
-        process.env.FRONTEND_URL || 'http://localhost:3000',
-        process.env.ADMIN_URL || 'http://localhost:3001',
-    ],
+    origin: function (origin, callback) { callback(null, true); },
     credentials: true,
 }));
 app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 200, message: { error: 'Too many requests' } }));
