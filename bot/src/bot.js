@@ -6,7 +6,6 @@ const BOT_TOKEN = process.env.BOT_TOKEN;
 const WEBAPP_URL = process.env.WEBAPP_URL || 'https://bakery-delivery-p8vy.vercel.app';
 const API_URL = process.env.API_URL || 'https://bakery-delivery-backendbakery-delivery.onrender.com';
 
-
 if (!BOT_TOKEN) {
     console.error('❌ BOT_TOKEN is not set in .env file');
     console.log('ℹ️  Create a bot at @BotFather and set the token in bot/.env');
