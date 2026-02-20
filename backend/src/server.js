@@ -460,7 +460,7 @@ const startServer = async () => {
         console.log('\n⏳ MongoDB Memory Server ishga tushirilmoqda...');
         const tmpDir = path.join(__dirname, '..', '.mongo-data');
         const mongod = await MongoMemoryServer.create({
-            instance: { dbPath: tmpDir, storageEngine: 'ephemeralForTest' },
+            instance: { storageEngine: 'ephemeralForTest' },
         });
         const uri = mongod.getUri();
         console.log(`📦 MongoDB Memory Server tayyor: ${uri}`);
